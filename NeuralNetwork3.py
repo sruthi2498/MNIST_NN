@@ -33,7 +33,7 @@ test_df = pd.read_csv(test_df_filename,header=None).values
 size = train_df.shape[0]
 features = train_df.shape[1]
 test_size = test_df.shape[0]
-print(size,features, test_size)
+# print(size,features, test_size)
 
 def removeNan(X,y):
   indices = np.argwhere(np.isnan(X))
@@ -130,12 +130,12 @@ class Model:
   def initializeWeights(self):
     self.W1 = getWeightMatrix(self.inputLayersSize,self.hiddenLayersSize )
     self.W2 = getWeightMatrix(self.hiddenLayersSize,self.outputLayersSize )
-    print("W1 : ",self.W1.shape, "W2 : ",self.W2.shape)
+    # print("W1 : ",self.W1.shape, "W2 : ",self.W2.shape)
 
   def initializeBiases(self):
     self.b1 = np.zeros((self.hiddenLayersSize,1))
     self.b2 = np.zeros((self.outputLayersSize,1))
-    print("b1 : ",self.b1.shape, "b2 : ",self.b2.shape)
+    # print("b1 : ",self.b1.shape, "b2 : ",self.b2.shape)
   
   def initializeOutputs(self):
     self.Z1 = None
@@ -227,9 +227,9 @@ def getAccuracy(Y,Y_pred):
   #print("Accuracy ",accuracy)
   return accuracy
 
-batch_size = 256
-num_batchs = math.ceil(size//batch_size)
-size, num_batchs, num_batchs*batch_size
+# batch_size = 256
+# num_batchs = math.ceil(size//batch_size)
+# size, num_batchs, num_batchs*batch_size
 
 '''
 X,y = shuffle(train_df,train_labels)
@@ -246,7 +246,7 @@ model.getLoss()'''
 
 def trainOneEpoch(train_df,train_labels):
   t1 = time.time()
-  batch_size = 256
+  batch_size = 32
   num_batchs = size//batch_size
   X,y = shuffle(train_df,train_labels)
   i = 0
@@ -297,7 +297,7 @@ for i in range(epochs):
   train_actual = np.argmax(train_labels, axis=0)
   train_acc = getAccuracy(train_actual,train_preds)
   train_accuracy.append(train_acc)
-  print("Epoch ",i, "loss = ",l, " train acc = ",train_acc)
+  # print("Epoch ",i, "loss = ",l, " train acc = ",train_acc)
   
   '''
   test_df,test_labels = shuffle(test_df,test_labels)
