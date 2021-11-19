@@ -30,6 +30,9 @@ train_labels = pd.read_csv(train_labels_filename,header=None).values
 test_df = pd.read_csv(test_df_filename,header=None).values
 # test_labels = pd.read_csv("test_label.csv",header=None).to_numpy()
 
+
+
+
 size = train_df.shape[0]
 features = train_df.shape[1]
 test_size = test_df.shape[0]
@@ -104,10 +107,10 @@ def getWeightMatrix(prev_layer_size,size):
     return weights
 
 def getCategoricalCrossEntropy(Y, Y_pred):
-    L_sum = np.sum(np.multiply(Y, np.log(Y_pred)))
+    LSum = np.sum(np.multiply(Y, np.log(Y_pred)))
     m = Y.shape[1]
     #print(m)
-    L = -(1/m) * L_sum
+    L = -(1/m) * LSum
     return L
 
 # Y = train_labels[:,:5]
@@ -286,7 +289,7 @@ totalTime = 0
 loss = []
 train_accuracy=[]
 test_accuracy = []
-epochs = 20
+epochs = 120
 for i in range(epochs):
   t,l = trainOneEpoch(train_df,train_labels)
   totalTime+=t
